@@ -46,6 +46,7 @@ int qm_model_load(qm_model *m, const char *path, int n_threads, int max_seq, cha
     c->rope_theta = get_f32(f, "llama.rope_theta", 10000.0f);
     c->norm_eps = get_f32(f, "llama.norm_eps", 1e-5f);
     if (c->dim % c->n_heads || c->n_heads % c->n_kv_heads || (c->dim / c->n_heads) % 2 || c->n_layers > 1024) {
+
         snprintf(err, errlen, "inconsistent head configuration");
         goto fail;
     }
