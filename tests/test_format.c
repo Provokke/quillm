@@ -83,6 +83,7 @@ int main(void) {
     buf[4] = 9;
     CHECK(qlm_parse(&f, buf, size, err, sizeof err) != 0 && strstr(err, "version"), "bad version: %s", err);
     free(buf);
+
     free(orig);
     TEST_DONE();
 }
