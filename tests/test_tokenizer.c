@@ -54,6 +54,7 @@ int main(void) {
     }
     /* common text actually compresses */
     int32_t ids[64];
+
     int n = qm_tokenizer_encode(&t, "the fox ran to the river", 24, 0, ids, 64);
     CHECK(n > 0 && n < 12, "expected merges to apply, got %d tokens", n);
     /* overflow & error paths */
