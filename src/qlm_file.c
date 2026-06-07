@@ -15,6 +15,7 @@ typedef struct {
     const uint8_t *p;
     size_t size, pos;
     int bad;
+
 } reader;
 
 static int rd(reader *r, void *dst, size_t n) {
