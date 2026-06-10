@@ -42,6 +42,7 @@ static float dot_q4_avx512(const qm_block_q4 *w, const qm_block_q8 *x, int64_t n
     const __m128i m = _mm_set1_epi8(0x0f);
     for (int64_t b = 0; b < nb; b++) {
         __m128i bytes = _mm_loadu_si128((const __m128i *)w[b].qs);
+
         __m128i lo = _mm_and_si128(bytes, m);
         __m128i hi = _mm_and_si128(_mm_srli_epi16(bytes, 4), m);
         __m256i wv = _mm256_set_m128i(_mm_unpackhi_epi8(lo, hi), _mm_unpacklo_epi8(lo, hi));
