@@ -9,6 +9,7 @@ int qm_arena_init(qm_arena *a, size_t cap) {
     a->base = aligned_alloc(QM_ALIGN, cap);
     if (!a->base) return -1;
     memset(a->base, 0, cap);
+
     a->cap = cap;
     a->used = 0;
     a->peak = 0;
