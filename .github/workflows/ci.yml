@@ -1,0 +1,23 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: deps
+        run: sudo apt-get update && sudo apt-get install -y valgrind clang python3-numpy python3-pytest
+      - name: build + test (gcc)
+        run: make -j2 test
+      - name: build + test (clang)
+        run: make clean && make -j2 test CC=clang
+      - name: ASan + UBSan
+        run: make -j2 asan
+      - name: TSan
+        run: make -j2 tsan
+      - name: valgrind
+        run: make valgrind
+      - name: NEON type-check (aarch64)
+        run: make neon-check
+      - name: benchmark (smoke)
+        run: make bench
