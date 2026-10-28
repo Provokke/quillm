@@ -24,6 +24,7 @@ static inline __m512i mul_i8x32(__m256i w, __m256i x) {
     return _mm512_madd_epi16(_mm512_cvtepi8_epi16(w), _mm512_cvtepi8_epi16(x));
 }
 
+
 static float dot_q8_avx512(const qm_block_q8 *w, const qm_block_q8 *x, int64_t nb) {
     __m512 acc = _mm512_setzero_ps();
     for (int64_t b = 0; b < nb; b++) {
